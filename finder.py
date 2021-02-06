@@ -11,9 +11,19 @@ except requests.exceptions.RequestException as e:
     print("Whoops! The page you were trying to reach encountered an error.\nPlease try again later, or run the program again to input a new page.")
     print("Status Code:", e)
     sys.exit()
-soup = BeautifulSoup(page.content, 'html.parser')
-ingredients = soup.find_all('div', {'class': re.compile('ingredients')})
 
+soup = BeautifulSoup(page.content, 'html.parser')
+if 'allrecipes' in str(page.url):
+    ingredients = utility.get_ingredients('all', soup)
+    directions =
+elif 'foodnetwork' in str(page.url):
+    a = 0
+else:
+    ingredients = soup.find_all('div', {'class': re.compile('ingredients')})
+    directions = soup.find_all('div', {'class': re.compile("instruction")})
+
+
+print("There you go! I hope you enjoyed my scraper!")
 
 
 
